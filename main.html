@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMB Cinemaz - Header Demo</title>
+    <!-- Link to external CSS & JS (separate files) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome 6 (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="vmb-header">
+        <div class="header-container">
+            <!-- Logo / Title -->
+            <div class="logo-area">
+                <a href="#" class="vmb-logo">
+                    <span class="logo-vmb">V.M.B</span>
+                    <span class="logo-cinemaz">CINEMAZ</span>
+                </a>
+            </div>
+
+            <!-- Navigation Menus -->
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active">Home</a></li>
+                    <li><a href="#" class="nav-link">Events</a></li>
+                    <li><a href="#" class="nav-link">Offers</a></li>
+                    <li><a href="#" class="nav-link">Advertise with us</a></li>
+                    <li><a href="#" class="nav-link">Contact us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Right side: Search + Location + Login/Admin -->
+            <div class="header-actions">
+                <!-- Search Bar -->
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search movies, events..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
+                <!-- Location Selector -->
+                <div class="location-selector">
+                    <i class="fas fa-map-marker-alt location-icon"></i>
+                    <select id="locationSelect" class="location-dropdown">
+                        <option value="mumbai">Mumbai</option>
+                        <option value="delhi">Delhi NCR</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="kolkata">Kolkata</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="hyderabad">Hyderabad</option>
+                    </select>
+                </div>
+
+                <!-- Login / Admin Button (dynamic state) -->
+                <div class="login-section" id="loginSection">
+                    <button id="loginBtn" class="login-btn"><i class="fas fa-user-circle"></i> Login</button>
+                    <div id="adminPanel" class="admin-panel" style="display: none;">
+                        <i class="fas fa-crown"></i> <span id="adminNameDisplay">Admin</span>
+                        <button id="logoutBtn" class="logout-icon"><i class="fas fa-sign-out-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hardcore Login Modal (simulated backend check) -->
+    <div id="loginModal" class="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-lock"></i> Admin / User Login</h3>
+            <p>Enter hardcoded credentials for demo</p>
+            <input type="text" id="loginUsername" placeholder="Username" autocomplete="off">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="submitLoginBtn" class="submit-login">Login</button>
+            <div id="loginErrorMsg" class="error-msg"></div>
+            <div class="demo-hint">Hint: admin / admin123  or  user / user123</div>
+        </div>
+    </div>
+
+ <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <div class="banner-container">
+            <div class="banner-track" id="bannerTrack">
+                <!-- Slide 1 - Movie -->
+                <div class="banner-slide active" data-index="0">
+                    <div class="slide-bg" style="background-image: linear-gradient(90deg, #0a0a1a 0%, rgba(107,33,165,0.7) 100%), url('images/banner1.jpg');">
+                        <div class="slide-content">
+                            <span class="slide-badge"><i class="fas fa-film"></i> Now Showing</span>
+                            <h2>Star Wars: The Mandalorian and Grogu</h2>
+                            <p>2h 12m Action, Adventure, Animation, Sci-fi, UA16+ 22 May 2026</p>
+                            <div class="slide-meta">
+                                <span><i class="far fa-clock"></i> 2h 10m</span>
+                                <span><i class="fas fa-tag"></i> Action/Comedy</span>
+                                <span><i class="fas fa-star" style="color: #facc15;"></i> 8.7/10</span>
+                            </div>
+                            <button class="banner-btn"><i class="fas fa-ticket-alt"></i> Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 - Concert -->
+                <div class="banner-slide" data-index="1">
+                    <div class="slide-bg" style="background-image: linear-gradient(90deg, #0a0a1a 0%, rgba(147,51,234,0.7) 100%), url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1200');">
+                        <div class="slide-content">
+                            <span class="slide-badge"><i class="fas fa-music"></i> Live Concert</span>
+                            <h2>Sunburn Arena 2025</h2>
+                            <p>DJ Snake | Marshmello | Alan Walker - Live in Mumbai</p>
+                            <div class="slide-meta">
+                                <span><i class="far fa-calendar"></i> 15 Dec 2025</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Jio Garden</span>
+                                <span><i class="fas fa-users"></i> 20K+ going</span>
+                            </div>
+                            <button class="banner-btn"><i class="fas fa-ticket-alt"></i> Get Passes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 - Event -->
+                <div class="banner-slide" data-index="2">
+                    <div class="slide-bg" style="background-image: linear-gradient(90deg, #0a0a1a 0%, rgba(250,204,21,0.6) 100%), url('https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=1200');">
+                        <div class="slide-content">
+                            <span class="slide-badge"><i class="fas fa-calendar-alt"></i> Special Event</span>
+                            <h2>Comedy Nights with Kapil</h2>
+                            <p>Live Stand-up Comedy | Unlimited Laughter Guaranteed</p>
+                            <div class="slide-meta">
+                                <span><i class="far fa-clock"></i> 8:00 PM onwards</span>
+                                <span><i class="fas fa-microphone-alt"></i> Kapil Sharma</span>
+                                <span><i class="fas fa-rupee-sign"></i> Starting ₹499</span>
+                            </div>
+                            <button class="banner-btn"><i class="fas fa-ticket-alt"></i> Book Seats</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="banner-dots" id="bannerDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+
+            <!-- Previous/Next Buttons -->
+            <button class="banner-nav prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="banner-nav next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+ <!-- Now Showing Section -->
+    <section class="now-showing">
+        <div class="section-header">
+            <div class="title-wrapper">
+                <i class="fas fa-fire" style="color: #facc15;"></i>
+                <h2>Now Showing</h2>
+                <span class="badge">12 Movies</span>
+            </div>
+            <div class="swipe-controls">
+                <button class="swipe-btn prev-btn" id="swipePrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="swipe-btn next-btn" id="swipeNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="movies-container">
+            <div class="movies-track" id="moviesTrack">
+                <!-- Movie cards will be dynamically injected here -->
+            </div>
+        </div>
+
+        <!-- Scroll/Drag Indicator -->
+        <div class="scroll-indicator">
+            <div class="indicator-bar">
+                <div class="indicator-progress" id="scrollProgress"></div>
+            </div>
+            <p class="drag-hint"><i class="fas fa-hand-pointer"></i> Swipe or drag to see more movies</p>
+        </div>
+    </section>
+
+
+      <!-- VMB+ Premier Section -->
+    <section class="vmb-premier">
+        <div class="premier-header">
+            <div class="premier-brand">
+                <div class="vmbplus-logo">
+                    <i class="fas fa-crown"></i>
+                    <span>VMB+</span>
+                    <span class="premier-badge">PREMIER</span>
+                </div>
+                <p class="premier-tagline">Stream exclusive originals, blockbuster movies & premium shows</p>
+            </div>
+            <a href="#" class="explore-link" id="exploreVMBPlus">
+                Explore VMB+ <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="premier-container">
+            <div class="premier-track" id="premierTrack">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="premier-nav prev-premier" id="premierPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="premier-nav next-premier" id="premierNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Dots Indicator -->
+        <div class="premier-dots" id="premierDots"></div>
+    </section>
+
+    <!-- VMB+ Redirect Modal / Overlay (Optional) -->
+    <div id="redirectModal" class="redirect-modal">
+        <div class="modal-redirect-content">
+            <i class="fas fa-tv" style="font-size: 3rem; color: #facc15;"></i>
+            <h3>Leaving to VMB+ Streaming</h3>
+            <p>You're about to stream "<span id="selectedShowTitle"></span>" on VMB+ platform.</p>
+            <div class="modal-redirect-buttons">
+                <button class="btn-continue" id="continueRedirect">Continue to VMB+ <i class="fas fa-external-link-alt"></i></button>
+                <button class="btn-cancel" id="cancelRedirect">Stay Here</button>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Coming Soon Section -->
+    <section class="coming-soon">
+        <div class="coming-header">
+            <div class="header-left">
+                <i class="fas fa-calendar-star"></i>
+                <h2>Coming Soon</h2>
+                <span class="coming-badge">Anticipated Releases</span>
+            </div>
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="theater">
+                    <i class="fas fa-film"></i> In Theaters
+                </button>
+                <button class="tab-btn" data-tab="streaming">
+                    <i class="fas fa-crown"></i> VMB+ Streaming
+                </button>
+            </div>
+        </div>
+
+        <!-- Theater Tab Content -->
+        <div class="tab-content active" id="theaterTab">
+            <div class="coming-container">
+                <div class="coming-track" id="theaterTrack">
+                    <!-- Dynamic theater movies will be injected here -->
+                </div>
+            </div>
+            <div class="section-footer">
+                <button class="view-all-btn" id="viewAllTheater">
+                    View All Upcoming Movies <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Streaming Tab Content -->
+        <div class="tab-content" id="streamingTab">
+            <div class="coming-container">
+                <div class="coming-track" id="streamingTrack">
+                    <!-- Dynamic VMB+ shows will be injected here -->
+                </div>
+            </div>
+            <div class="section-footer">
+                <button class="view-all-btn" id="viewAllStreaming">
+                    Explore All VMB+ Originals <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows (shared) -->
+        <button class="coming-nav prev-coming" id="comingPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="coming-nav next-coming" id="comingNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Countdown Timer Modal (Reminder) -->
+        <div id="reminderModal" class="reminder-modal">
+            <div class="reminder-content">
+                <i class="fas fa-bell" style="font-size: 2.5rem; color: #facc15;"></i>
+                <h3>Get Release Reminder</h3>
+                <p>We'll notify you when "<span id="reminderTitle"></span>" releases!</p>
+                <input type="email" id="reminderEmail" placeholder="Your email address">
+                <div class="reminder-buttons">
+                    <button class="btn-remind" id="confirmReminder">Notify Me</button>
+                    <button class="btn-close-reminder" id="closeReminder">Maybe Later</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Trailers Section -->
+    <section class="trailers-section">
+        <div class="trailers-header">
+            <div class="header-left">
+                <i class="fas fa-video"></i>
+                <h2>Official Trailers</h2>
+                <span class="trailers-badge">Watch & Get Excited</span>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-fire"></i> All Trailers
+                </button>
+                <button class="filter-btn" data-filter="movie">
+                    <i class="fas fa-film"></i> Movies
+                </button>
+                <button class="filter-btn" data-filter="show">
+                    <i class="fas fa-tv"></i> VMB+ Shows
+                </button>
+                <button class="filter-btn" data-filter="nowshowing">
+                    <i class="fas fa-play-circle"></i> Now Showing
+                </button>
+            </div>
+        </div>
+
+        <div class="trailers-container">
+            <div class="trailers-track" id="trailersTrack">
+                <!-- Dynamic trailer cards will be injected here -->
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="trailers-nav prev-trailer" id="trailerPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="trailers-nav next-trailer" id="trailerNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator-trailer">
+            <div class="indicator-bar-trailer">
+                <div class="indicator-progress-trailer" id="trailerProgress"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trailer Modal (YouTube Player) -->
+    <div id="trailerModal" class="trailer-modal">
+        <div class="modal-trailer-content">
+            <div class="modal-header">
+                <h3 id="modalTrailerTitle">Trailer Title</h3>
+                <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="video-container">
+                <iframe id="trailerIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button class="watch-now-btn" id="watchNowBtn">
+                    <i class="fas fa-ticket-alt"></i> Book / Watch Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- Footer Section -->
+    <footer class="vmb-footer">
+        <div class="footer-container">
+            <!-- Column 1: Brand Info -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <i class="fas fa-crown"></i>
+                    <span>VMB</span>
+                    <span class="logo-cinemaz">CINEMAZ</span>
+                </div>
+                <p class="footer-description">
+                    India's most loved cinema destination. Experience movies, events, and VMB+ streaming with premium comfort.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col">
+                <h4><i class="fas fa-link"></i> Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Now Showing</a></li>
+                    <li><a href="#">Coming Soon</a></li>
+                    <li><a href="#">VMB+ Originals</a></li>
+                    <li><a href="#">Events & Concerts</a></li>
+                    <li><a href="#">Offers & Promotions</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Support -->
+            <div class="footer-col">
+                <h4><i class="fas fa-headset"></i> Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cancellation Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Download App & Newsletter -->
+            <div class="footer-col">
+                <h4><i class="fas fa-mobile-alt"></i> Download App</h4>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn"><i class="fab fa-google-play"></i> Google Play</a>
+                    <a href="#" class="app-btn"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+                <h4 style="margin-top: 1.5rem;"><i class="fas fa-envelope"></i> Newsletter</h4>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="Your email address">
+                    <button id="subscribeBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <p class="newsletter-note">Get exclusive offers & movie updates!</p>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="bottom-container">
+                <p>&copy; 2025 VMB Cinemaz. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #facc15;"></i> for cinema lovers</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+
+    <!-- JavaScript External Link -->
+    <script src="script.js"></script>
+</body>
+</html>

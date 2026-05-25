@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VMB Cinemaz | Premium Cinema Experience</title>
+    <!-- Font Awesome 6 (Free Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at 10% 30%, #0a0a1a, #03010a);
+            color: #f0f0f0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f1a2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 12px;
+        }
+
+        /* Yellow & Purple Color Scheme */
+        :root {
+            --yellow: #facc15;
+            --yellow-dark: #eab308;
+            --purple-deep: #6b21a5;
+            --purple-soft: #9333ea;
+            --purple-glow: #a855f7;
+            --dark-bg: #0b0719;
+        }
+
+        /* Reusable Button */
+        .btn-yellow {
+            background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+            border: none;
+            color: #1e1b2b;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+        }
+        .btn-yellow:hover {
+            transform: scale(1.02);
+            background: var(--yellow);
+            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--yellow);
+            color: #0b0719;
+        }
+
+        /* Header / Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(11, 7, 25, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #facc15, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            -webkit-background-clip: unset;
+            color: var(--yellow);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #e2e2e2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        .nav-icons {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+        .nav-icons i {
+            transition: 0.2s;
+        }
+        .nav-icons i:hover {
+            color: var(--yellow);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(120deg, #120a2c, #2a1640);
+            margin: 2rem 5%;
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+        .hero-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .hero-text .highlight {
+            color: var(--yellow);
+        }
+        .hero-text p {
+            margin: 1rem 0 1.5rem;
+            opacity: 0.9;
+        }
+        .hero-badge {
+            background: rgba(106, 33, 165, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.8rem;
+        }
+
+        /* Movie Section */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 2rem 5% 1.5rem;
+        }
+        .section-title h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-left: 5px solid var(--yellow);
+            padding-left: 1rem;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 0 5% 3rem;
+        }
+        .movie-card {
+            background: rgba(20, 12, 40, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(250, 204, 21, 0.2);
+            cursor: pointer;
+        }
+        .movie-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(168, 85, 247, 0.4);
+            border-color: var(--yellow);
+        }
+        .movie-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .movie-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--yellow);
+            color: #1e1b2b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        .movie-info {
+            padding: 1rem;
+        }
+        .movie-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .movie-info p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            display: flex;
+            gap: 0.6rem;
+            margin: 0.5rem 0;
+        }
+        .book-btn {
+            background: none;
+            border: 1px solid var(--purple-soft);
+            color: var(--yellow);
+            width: 100%;
+            padding: 8px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        .book-btn:hover {
+            background: var(--purple-deep);
+            border-color: var(--yellow);
+            color: white;
+        }
+
+        /* Promo Banner (like PVR offers) */
+        .promo-banner {
+            background: linear-gradient(95deg, #3b0764, #581c87);
+            margin: 2rem 5%;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border: 1px solid #facc1540;
+        }
+        .promo-text h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .promo-text p {
+            color: #facc15;
+        }
+
+        /* Footer */
+        footer {
+            background: #060318;
+            margin-top: 4rem;
+            padding: 2rem 5% 1rem;
+            border-top: 1px solid #2a2040;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-col h4 {
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        .social-icons i {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            color: #ccc;
+            transition: 0.2s;
+        }
+        .social-icons i:hover {
+            color: var(--yellow);
+        }
+        .copyright {
+            text-align: center;
+            padding: 1.5rem 0 1rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Modal (Booking Popup - Functional Design) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #18122b;
+            border-radius: 2rem;
+            max-width: 480px;
+            width: 90%;
+            padding: 2rem;
+            border: 1px solid var(--yellow);
+            box-shadow: 0 20px 40px #00000055;
+            animation: fadeUp 0.2s ease;
+        }
+        @keyframes fadeUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-content h3 {
+            font-size: 1.8rem;
+            color: var(--yellow);
+        }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            background: #2e2346;
+            border: 1px solid #6b21a5;
+            border-radius: 30px;
+            color: white;
+            font-family: inherit;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .close-modal {
+            background: #3a2c54;
+            color: white;
+        }
+        .success-msg {
+            color: #facc15;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 750px) {
+            .hero-text h2 { font-size: 2rem; }
+            .navbar { flex-wrap: wrap; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header>
+    <div class="navbar">
+        <div class="logo">
+            <h1>VMB <span>CINEMAZ</span></h1>
+        </div>
+        <div class="nav-links">
+            <a href="#">Movies</a>
+            <a href="#">Events</a>
+            <a href="#">Offers</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-user-circle" id="signupIcon"></i>
+            <i class="fas fa-ticket-alt"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-text">
+        <div class="hero-badge"><i class="fas fa-crown"></i> India's favourite cinema destination</div>
+        <h2>Experience <span class="highlight">Cinema Magic</span> <br> Like Never Before</h2>
+        <p>Ultra HD | Dolby Atmos | Recliner Seats | Yellow & Purple Vibes</p>
+        <button class="btn-yellow" id="exploreBtn"><i class="fas fa-play"></i> Explore Now</button>
+    </div>
+    <div style="font-size: 4rem; background: rgba(250,204,21,0.1); border-radius: 2rem; padding: 1rem;">
+        <i class="fas fa-film" style="color: #facc15;"></i>
+        <i class="fas fa-ticket" style="color: #c084fc; margin-left: 1rem;"></i>
+    </div>
+</section>
+
+<!-- Now Showing Movies Grid -->
+<div class="section-title">
+    <h3><i class="fas fa-fire" style="color: #facc15;"></i> Now Showing</h3>
+    <a href="#" style="color: #facc15;">View All <i class="fas fa-arrow-right"></i></a>
+</div>
+<div class="movie-grid" id="movieGrid"></div>
+
+<!-- Promo / Offer Banner (like PVR / BookMyShow) -->
+<div class="promo-banner">
+    <div class="promo-text">
+        <h4><i class="fas fa-percent"></i> Flat ₹100 OFF</h4>
+        <p>Use code: VMBYELLOW | Valid on first booking</p>
+    </div>
+    <button class="btn-outline" id="offerBtn">Grab Offer</button>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>VMB Cinemaz</h4>
+            <ul>
+                <li>About Us</li>
+                <li>Contact Support</li>
+                <li>Corporate Enquiry</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li>Now Showing</li>
+                <li>Coming Soon</li>
+                <li>Offers & Benefits</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 VMB Cinemaz — All rights reserved. Experience the yellow-purple extravaganza.
+    </div>
+</footer>
+
+<!-- Booking Modal (Functional Popup) -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <h3><i class="fas fa-ticket-alt"></i> Book Your Tickets</h3>
+        <p style="margin-top: 5px;">Selected Movie: <strong id="modalMovieName">Movie Name</strong></p>
+        <input type="text" id="userName" placeholder="Your Name" required>
+        <input type="email" id="userEmail" placeholder="Email Address">
+        <select id="numTickets">
+            <option value="1">1 Ticket</option>
+            <option value="2">2 Tickets</option>
+            <option value="3">3 Tickets</option>
+            <option value="4">4 Tickets</option>
+        </select>
+        <div class="modal-actions">
+            <button class="btn-yellow" id="confirmBookingBtn">Confirm Booking</button>
+            <button class="btn-outline close-modal" id="closeModalBtn">Cancel</button>
+        </div>
+        <div id="modalMessage" class="success-msg"></div>
+    </div>
+</div>
+
+<!-- Signup Modal (functional design mock) -->
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <h3><i class="fas fa-user-plus"></i> Sign Up / Login</h3>
+        <p style="color: #c084fc;">(Demo interface - database ready for future)</p>
+        <input type="text" id="signupName" placeholder="Full Name">
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPass" placeholder="Password">
+        <div class="modal-actions">
+            <button class="btn-yellow" id="simulateSignup">Join Now</button>
+            <button class="btn-outline close-modal" id="closeSignupBtn">Close</button>
+        </div>
+        <div id="signupMsg" class="success-msg"></div>
+    </div>
+</div>
+
+<script>
+    // Movie Data: Poster images placeholder (using unsplash or img placeholder but we design with background images)
+    const movies = [
+        { id: 1, title: "Deadpool & Wolverine", genre: "Action/Comedy", duration: "2h 10m", language: "English", rating: "UA", imgBg: "linear-gradient(145deg, #4a1d6d, #8b3c9e), url('https://via.placeholder.com/300x400/301934/ffcc00?text=DP+WOLV')", bgStyle: "background-blend-mode: overlay;" },
+        { id: 2, title: "Kalki 2898 AD", genre: "Sci-Fi Epic", duration: "3h", language: "Telugu/Hindi", rating: "UA", imgBg: "linear-gradient(145deg, #1f0b3b, #a855f7), url('https://via.placeholder.com/300x400/1f0b3b/facc15?text=KALKI')" },
+        { id: 3, title: "Stree 2", genre: "Horror Comedy", duration: "2h 25m", language: "Hindi", rating: "A", imgBg: "linear-gradient(145deg, #2e1147, #eab308), url('https://via.placeholder.com/300x400/2e1147/facc15?text=STREE2')" },
+        { id: 4, title: "Pushpa: The Rule", genre: "Action/Drama", duration: "2h 45m", language: "Hindi/Telugu", rating: "UA", imgBg: "linear-gradient(145deg, #6b21a5, #d97706), url('https://via.placeholder.com/300x400/6b21a5/facc15?text=PUSHPA')" },
+        { id: 5, title: "Furiosa", genre: "Action", duration: "2h 28m", language: "English", rating: "A", imgBg: "linear-gradient(145deg, #222, #a855f7), url('https://via.placeholder.com/300x400/222/ffcc00?text=FURIOSA')" },
+        { id: 6, title: "Inside Out 2", genre: "Animation", duration: "1h 40m", language: "English/Hindi", rating: "U", imgBg: "linear-gradient(145deg, #5b21b6, #eab308), url('https://via.placeholder.com/300x400/5b21b6/facc15?text=IO2')" }
+    ];
+
+    // Function to render movies
+    function renderMovies() {
+        const grid = document.getElementById('movieGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        movies.forEach(movie => {
+            const card = document.createElement('div');
+            card.classList.add('movie-card');
+            // Background image with gradient + placeholder mix, actual background image preview style.
+            card.innerHTML = `
+                <div class="movie-img" style="background: ${movie.imgBg}; background-size: cover; background-position: center; background-blend-mode: overlay;">
+                    <div class="movie-badge">${movie.rating}</div>
+                </div>
+                <div class="movie-info">
+                    <h4>${movie.title}</h4>
+                    <p><i class="fas fa-clock"></i> ${movie.duration} · <i class="fas fa-globe"></i> ${movie.language}</p>
+                    <p><i class="fas fa-tags"></i> ${movie.genre}</p>
+                    <button class="book-btn" data-id="${movie.id}" data-title="${movie.title}">Book Tickets 🎟️</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Add event listeners to all book buttons after rendering
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const movieTitle = btn.getAttribute('data-title');
+                openBookingModal(movieTitle);
+            });
+        });
+    }
+
+    // Booking Modal Logic
+    let currentMovie = "";
+    const modal = document.getElementById('bookingModal');
+    const modalMovieNameSpan = document.getElementById('modalMovieName');
+
+    function openBookingModal(movieTitle) {
+        currentMovie = movieTitle;
+        modalMovieNameSpan.innerText = movieTitle;
+        document.getElementById('userName').value = "";
+        document.getElementById('userEmail').value = "";
+        document.getElementById('numTickets').value = "1";
+        document.getElementById('modalMessage').innerHTML = "";
+        modal.style.display = "flex";
+    }
+
+    function closeBookingModal() {
+        modal.style.display = "none";
+    }
+
+    // Confirm booking simulation (functional design)
+    function confirmBooking() {
+        const userName = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value.trim();
+        const ticketQty = document.getElementById('numTickets').value;
+        if (!userName) {
+            document.getElementById('modalMessage').innerHTML = "❌ Please enter your name to proceed.";
+            return;
+        }
+        if (!email || !email.includes('@')) {
+            document.getElementById('modalMessage').innerHTML = "⚠️ Valid email required for booking confirmation.";
+            return;
+        }
+        // Simulate successful booking (later connect to database)
+        document.getElementById('modalMessage').innerHTML = `✅ Booking confirmed! ${ticketQty} ticket(s) for "${currentMovie}" by ${userName}. We'll email details to ${email}. 🎬 Enjoy show!`;
+        // In future: send to backend / local storage
+        setTimeout(() => {
+            closeBookingModal();
+            alert(`🎉 Booking confirmed for ${currentMovie}! Check console.`);
+        }, 1800);
+    }
+
+    // Signup Modal functional design
+    const signupModal = document.getElementById('signupModal');
+    function openSignupModal() {
+        signupModal.style.display = "flex";
+        document.getElementById('signupMsg').innerHTML = "";
+        document.getElementById('signupName').value = "";
+        document.getElementById('signupEmail').value = "";
+        document.getElementById('signupPass').value = "";
+    }
+    function closeSignupModal() {
+        signupModal.style.display = "none";
+    }
+    function simulateSignup() {
+        const name = document.getElementById('signupName').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const pass = document.getElementById('signupPass').value.trim();
+        if (!name || !email || !pass) {
+            document.getElementById('signupMsg').innerHTML = "All fields required (demo signup)";
+            return;
+        }
+        document.getElementById('signupMsg').innerHTML = `✨ Welcome ${name}! Your account is ready. (Demo mode. Future DB integration)`;
+        setTimeout(() => {
+            closeSignupModal();
+            alert("Signed up successfully! (Functional demo)");
+        }, 1500);
+    }
+
+    // Event listener for explore / promo
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMovies();
+
+        // Buttons event
+        const exploreBtn = document.getElementById('exploreBtn');
+        if(exploreBtn) {
+            exploreBtn.addEventListener('click', () => {
+                document.querySelector('.movie-grid').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+        const offerBtn = document.getElementById('offerBtn');
+        if(offerBtn) {
+            offerBtn.addEventListener('click', () => {
+                alert("🎟️ Promo code 'VMBYELLOW' applied! Get ₹100 off on minimum ₹299 booking.");
+            });
+        }
+
+        // Signup icon
+        const signupIcon = document.getElementById('signupIcon');
+        if(signupIcon) signupIcon.addEventListener('click', openSignupModal);
+
+        // Modal close handlers
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        if(closeModalBtn) closeModalBtn.addEventListener('click', closeBookingModal);
+        const confirmBtn = document.getElementById('confirmBookingBtn');
+        if(confirmBtn) confirmBtn.addEventListener('click', confirmBooking);
+        
+        const closeSignupBtn = document.getElementById('closeSignupBtn');
+        if(closeSignupBtn) closeSignupBtn.addEventListener('click', closeSignupModal);
+        const simulateSignupBtn = document.getElementById('simulateSignup');
+        if(simulateSignupBtn) simulateSignupBtn.addEventListener('click', simulateSignup);
+        
+        // Close modals if clicking outside content
+        window.addEventListener('click', (e) => {
+            if(e.target === modal) closeBookingModal();
+            if(e.target === signupModal) closeSignupModal();
+        });
+        
+        // Add some hover animation on cards
+        console.log("VMB Cinemaz ready — Yellow Purple magic");
+    });
+</script>
+</body>
+</html>
